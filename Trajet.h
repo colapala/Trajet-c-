@@ -3,7 +3,7 @@
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    e-ma ) il               : $EMAIL$
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------
 
-class Trajet :
+class Trajet 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,7 +34,7 @@ public:
     // Contrat :
     //
 
-	Trajet::Afficher();
+	virtual void Afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs
     Trajet & operator = ( const Trajet & unTrajet );
@@ -43,7 +43,6 @@ public:
     // Contrat :
     //
 
-
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
@@ -51,12 +50,12 @@ public:
     // Contrat :
     //
 
-    Trajet (string villeA,string villeB );
+    Trajet (const char * villeA,const char * villeB );
     // Mode d'emploi :
     //
     // Contrat :
     //
-
+    Trajet();
     virtual ~Trajet ( );
     // Mode d'emploi :
     //
@@ -65,11 +64,13 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
+    //protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	string Depart,Arrivee;
+
+        char * Depart;
+        char *Arrivee;   
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>

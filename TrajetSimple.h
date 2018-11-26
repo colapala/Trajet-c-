@@ -1,14 +1,14 @@
 /*************************************************************************
-                           Trajet  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if ! defined ( TRAJET_H )
-#define TRAJET_H
+//---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
+#if ! defined ( TRAJETSIMPLE_H )
+#define TRAJETSIMPLE_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,12 +17,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
+// Rôle de la classe <TrajetSimple>
 //
 //
 //------------------------------------------------------------------------
 
-class Trajet :
+class TrajetSimple : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -33,11 +33,10 @@ public:
     //
     // Contrat :
     //
-
-	Trajet::Afficher();
+  virtual void Afficher();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Trajet & operator = ( const Trajet & unTrajet );
+    TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,19 +44,20 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
+    TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Trajet (string villeA,string villeB );
+    TrajetSimple(const char* depart,const char * arrivee,const char * t );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    
 
-    virtual ~Trajet ( );
+    virtual ~TrajetSimple ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,10 +69,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	string Depart,Arrivee;
+    char* transport;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
 
-#endif // TRAJET_H
+#endif // TRAJETSIMPLE_H
 

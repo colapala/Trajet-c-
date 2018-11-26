@@ -1,41 +1,49 @@
 /*************************************************************************
-                           Trajet  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <cstring> 
 
 //------------------------------------------------------ Include personnel
+#include "TrajetCompose.h"
 #include "Trajet.h"
+#include <cstring>
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
+// type TrajetCompose::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
- 
-void Trajet::Afficher(){
-	cout<<Depart<<endl;
-	cout<<Arrivee<<endl;
+
+void TrajetCompose::Afficher(){
+  for (int i=0; i<curr_pos;i++){
+    list[i].Afficher();
+  }
 }
 
+void TrajetCompose::Ajouter(Trajet t){
+  if (curr_pos < nb_elements){
+    list[curr_pos]=t;
+    curr_pos++;
+  }
+}
 //------------------------------------------------- Surcharge d'opérateurs
-Trajet & Trajet::operator = ( const Trajet & unTrajet )
+TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompose )
 // Algorithme :
 //
 {
@@ -43,38 +51,48 @@ Trajet & Trajet::operator = ( const Trajet & unTrajet )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const Trajet & unTrajet )
+TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(unTrajetCompose.list[0].Depart, unTrajetCompose.list[unTrajetCompose.nb_elements-1].Arrivee)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
-} //----- Fin de Trajet (constructeur de copie)
+} //----- Fin de TrajetCompose (constructeur de copie)
 
 
-Trajet::Trajet (const char * villeA,const char *  villeB )
+
+TrajetCompose::TrajetCompose (Trajet t1,Trajet t2, int nbelements ):Trajet(t1.Depart,t2.Arrivee)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
-	Depart=villeA;
-	Arrivee=villeB;
-} //----- Fin de Trajet
+
+    nb_elements = nbelements;
+    list = new Trajet [nb_elements];
+    curr_pos = 2;
+    //pb avec le =
+    //list[0].Depart = ?? a definir
+    list[0]=t1;
+    list[1]=t2;
+    
+} //----- Fin de TrajetCompose
 
 
-Trajet::~Trajet ( )
+TrajetCompose::~TrajetCompose ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Trajet>" << endl;
+    cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
-} //----- Fin de ~Trajet
+    delete [] list;
+} //----- Fin de ~TrajetCompose
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+

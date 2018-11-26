@@ -1,14 +1,15 @@
 /*************************************************************************
-                           Trajet  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if ! defined ( TRAJET_H )
-#define TRAJET_H
+//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
+#if ! defined ( TRAJETCOMPOSE_H )
+#define TRAJETCOMPOSE_H
+#include "Trajet.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,12 +18,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
+// Rôle de la classe <TrajetCompose>
 //
 //
 //------------------------------------------------------------------------
 
-class Trajet :
+class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -33,11 +34,10 @@ public:
     //
     // Contrat :
     //
-
-	Trajet::Afficher();
-
+  virtual void Afficher();
+  void Ajouter(Trajet t);
 //------------------------------------------------- Surcharge d'opérateurs
-    Trajet & operator = ( const Trajet & unTrajet );
+    TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,19 +45,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
+    TrajetCompose ( const TrajetCompose & unTrajetCompose );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Trajet (string villeA,string villeB );
+    TrajetCompose (Trajet t1,Trajet  t2, int nbelements );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Trajet ( );
+    virtual ~TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -65,14 +65,16 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
+ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	string Depart,Arrivee;
+    int nb_elements;
+    int curr_pos;
+    Trajet * list;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
 
-#endif // TRAJET_H
+#endif // TRAJETCOMPOSE_H
 

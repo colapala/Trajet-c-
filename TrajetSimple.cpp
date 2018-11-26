@@ -1,80 +1,89 @@
 /*************************************************************************
-                           Trajet  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <cstring> 
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include <cstring>
+
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
+// type TrajetSimple::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
- 
-void Trajet::Afficher(){
-	cout<<Depart<<endl;
-	cout<<Arrivee<<endl;
-}
 
+void TrajetSimple::Afficher(){
+  Trajet::Afficher();
+  cout<<transport<<endl;
+}
 //------------------------------------------------- Surcharge d'opérateurs
-Trajet & Trajet::operator = ( const Trajet & unTrajet )
+TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
 // Algorithme :
 //
 {
+  
 } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const Trajet & unTrajet )
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTrajetSimple.Depart,unTrajetSimple.Arrivee)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    
 #endif
-} //----- Fin de Trajet (constructeur de copie)
+    transport = new char[strlen(unTrajetSimple.transport)+1];
+    strcpy(transport,unTrajetSimple.transport);
+} //----- Fin de TrajetSimple (constructeur de copie)
 
 
-Trajet::Trajet (const char * villeA,const char *  villeB )
+TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char * t ):Trajet(depart,arrivee)
+										
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
-	Depart=villeA;
-	Arrivee=villeB;
-} //----- Fin de Trajet
+    transport = new char[strlen(t)+1];
+    strcpy(transport,t);
+} //----- Fin de TrajetSimple
 
 
-Trajet::~Trajet ( )
+TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Trajet>" << endl;
+    cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-} //----- Fin de ~Trajet
+    
+    delete [] transport;
+} //----- Fin de ~TrajetSimple
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
