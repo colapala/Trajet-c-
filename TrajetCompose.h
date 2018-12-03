@@ -36,9 +36,9 @@ public:
     // Contrat :
     //
   virtual void Afficher();
-  void Ajouter(TrajetSimple t);
-  virtual const char* GetDepart();
-  virtual const char* GetArrivee();
+  void Ajouter(const TrajetSimple &t);
+  virtual const char* GetDepart() const ;
+  virtual const char* GetArrivee() const;
   //virtual const char* GetTransport()=0;
   
 //------------------------------------------------- Surcharge d'opérateurs
@@ -56,7 +56,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements );
+    TrajetCompose (const TrajetSimple &t1, const TrajetSimple &t2, int nbelements );
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,12 +74,11 @@ public:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    static int nb_elements;
+    int nb_elements;
     int curr_pos;
-    static Trajet ** list;
+    Trajet ** list;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetCompose>
 
 #endif // TRAJETCOMPOSE_H
-

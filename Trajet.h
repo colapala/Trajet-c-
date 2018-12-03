@@ -35,8 +35,8 @@ public:
     //
 
 	virtual void Afficher();
-	virtual const char* GetDepart() =0;
-	virtual const char* GetArrivee() =0;
+	virtual const char* GetDepart() const =0;
+	virtual const char* GetArrivee() const =0;
 	//virtual const char* GetTransport() =0;
 //------------------------------------------------- Surcharge d'opérateurs
     Trajet & operator = ( const Trajet & unTrajet );

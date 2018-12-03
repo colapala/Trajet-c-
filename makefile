@@ -25,4 +25,4 @@ TrajetCompose.o: TrajetCompose.cpp TrajetCompose.h
 	g++ -ansi -pedantic -Wall -std=c++11 -c $< -o $@ 
 
 clean : 
-	rm -rf Test.ex core
+	rm -rf Test.ex *.o core

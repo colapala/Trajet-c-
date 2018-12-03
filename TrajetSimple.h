@@ -34,9 +34,9 @@ public:
     // Contrat :
     //
   virtual void Afficher();
-  const char* GetDepart();
-  const char* GetArrivee();
-  const char* GetTransport();
+  const char* GetDepart() const;
+  const char* GetArrivee() const ;
+  const char* GetTransport() const;
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );

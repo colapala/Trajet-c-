@@ -24,8 +24,8 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-int TrajetCompose::nb_elements =2;
-Trajet ** TrajetCompose::list = new Trajet*[nb_elements];
+
+
 //----------------------------------------------------- Méthodes publiques
 // type TrajetCompose::Méthode ( liste des paramètres )
 // Algorithme :
@@ -41,15 +41,15 @@ void TrajetCompose::Afficher(){
   }
 }
 
-const char* TrajetCompose::GetDepart(){
+const char* TrajetCompose::GetDepart() const{
 	const char* a = list[0]->GetDepart();
 	return a;
 }
-const char* TrajetCompose::GetArrivee(){
+const char* TrajetCompose::GetArrivee() const{
 	return list[curr_pos]->GetArrivee();
 }
 
-void TrajetCompose::Ajouter(TrajetSimple t){
+void TrajetCompose::Ajouter(const TrajetSimple &t){
   if (curr_pos <= nb_elements){
     list[curr_pos]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
     curr_pos++;
@@ -93,7 +93,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 
 
 //TrajetCompose::TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements ):Trajet(t1.Depart,t2.Arrivee)
-TrajetCompose::TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements )
+TrajetCompose::TrajetCompose (const TrajetSimple &t1,const TrajetSimple &t2, int nbelements )
 // Algorithme :
 //
 {
@@ -102,9 +102,9 @@ TrajetCompose::TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements )
 #endif
 
     nb_elements = nbelements;
-    //list = new Trajet*[nb_elements];
+    list = new Trajet*[nb_elements];
     curr_pos = 2;
-	
+ 	
 
     list[0]= new TrajetSimple(t1.GetDepart(), t1.GetArrivee(), t1.GetTransport());
     list[1]= new TrajetSimple (t2.GetDepart(), t2.GetArrivee(), t2.GetTransport());

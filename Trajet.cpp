@@ -35,8 +35,8 @@ using namespace std;
 	cout<<Arrivee<<endl;*/
 }
 
-	const char* Trajet::GetDepart(){ return "no";}
-	const char* Trajet::GetArrivee(){return "no";}
+	const char* Trajet::GetDepart() const{ return "no";}
+	const char* Trajet::GetArrivee() const{return "no";}
 	//const char* Trajet::GetTransport(){return "no";}
 
 //------------------------------------------------- Surcharge d'opérateurs

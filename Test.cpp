@@ -2,7 +2,7 @@
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include <iostream>
-#include "Catalogue.h"
+//#include "Catalogue.h"
 using namespace std;
 
 int main(){
@@ -18,9 +18,9 @@ int main(){
   TC.Ajouter(t3);
   TC.Afficher();
   
-  Catalogue C;
-  C.Ajouter(t);
-  C.Afficher();
+ // Catalogue C;
+ // C.Ajouter(t);
+  //C.Afficher();
   //cout << "depart :" <<TC.GetDepart() <<endl;
 	/*TrajetSimple t2("Paris","Dijon","Avion");
 	TC.Ajouter(t2);

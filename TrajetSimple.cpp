@@ -38,15 +38,15 @@ void TrajetSimple::Afficher(){
   cout<<transport<<endl <<endl;
 }
 
-const char* TrajetSimple::GetDepart(){
+const char* TrajetSimple::GetDepart() const{
 	return Depart;
 }
 
-const char* TrajetSimple::GetArrivee(){
+const char* TrajetSimple::GetArrivee() const{
 	return Arrivee;
 }
 
-const char* TrajetSimple::GetTransport(){
+const char* TrajetSimple::GetTransport() const{
 	return transport;
 }
 //------------------------------------------------- Surcharge d'opérateurs
