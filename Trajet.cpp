@@ -18,6 +18,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
 
+
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -30,16 +31,20 @@ using namespace std;
 //} //----- Fin de Méthode
  
  void Trajet::Afficher(){
-	cout<<Depart<<endl;
-	cout<<Arrivee<<endl;
+	/*cout<<Depart<<endl;
+	cout<<Arrivee<<endl;*/
 }
+
+	const char* Trajet::GetDepart(){ return "no";}
+	const char* Trajet::GetArrivee(){return "no";}
+	//const char* Trajet::GetTransport(){return "no";}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Trajet & Trajet::operator = ( const Trajet & unTrajet )
 // Algorithme :
 //
 {
-  
+  return *this;
 } //----- Fin de operator =
 
 
@@ -52,29 +57,26 @@ Trajet::Trajet ( const Trajet & unTrajet )
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
 
-    Depart = new char[strlen(unTrajet.Depart)+1];
+    /*Depart = new char[strlen(unTrajet.Depart)+1];
     strcpy(Depart,unTrajet.Depart);
     Arrivee = new char[strlen(unTrajet.Arrivee)+1];
-    strcpy(Arrivee,unTrajet.Arrivee);
+    strcpy(Arrivee,unTrajet.Arrivee);*/
 } //----- Fin de Trajet (constructeur de copie)
 
 
-Trajet::Trajet (const char * villeA,const char *  villeB )
+Trajet::Trajet ()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-    Depart = new char[strlen(villeA)+1];
+    /*Depart = new char[strlen(villeA)+1];
     strcpy(Depart, villeA);
     Arrivee = new char[strlen(villeB)+1];
-    strcpy(Arrivee,villeB);
+    strcpy(Arrivee,villeB);*/
 } //----- Fin de Trajet
 
-Trajet::Trajet(){
-  
-}
 
 Trajet::~Trajet ( )
 // Algorithme :
@@ -83,8 +85,8 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-    delete [] Depart;
-    delete [] Arrivee;
+    /*delete [] Depart;
+    delete [] Arrivee;*/
 } //----- Fin de ~Trajet
 
 

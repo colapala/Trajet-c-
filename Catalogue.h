@@ -1,14 +1,17 @@
 /*************************************************************************
-                           Trajet  -  description
+                           Catalogue  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if ! defined ( TRAJET_H )
-#define TRAJET_H
+//---------- Interface de la classe <Catalogue> (fichier Trajet.h) ----------------
+#if ! defined ( CATALOGUE_H )
+#define CATALOGUE_H
+#include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,12 +20,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
+// Rôle de la classe <Catalogue>
 //
 //
 //------------------------------------------------------------------------
 
-class Trajet :
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,10 +37,11 @@ public:
     // Contrat :
     //
 
-	Trajet::Afficher();
+	void Afficher();
+	void Ajouter(Trajet t);
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Trajet & operator = ( const Trajet & unTrajet );
+    Catalogue & operator = ( const Catalogue & unCatalogue );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,19 +49,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
+    Catalogue ( const Catalogue & unCatalogue );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Trajet (string villeA,string villeB );
+    Catalogue ();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Trajet ( );
+    virtual ~Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,10 +73,12 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	string Depart,Arrivee;
+	Trajet ** collection;
+	static int taille;
+	static int nb_trajets;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//-------------------------------- Autres définitions dépendantes de <Catalogue>
 
-#endif // TRAJET_H
+#endif // CATALOGUE_H
 

@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Catalogue  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,22 +15,52 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Xxx.h"
+#include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
+int Catalogue::nb_trajets = 0;
+int Catalogue::taille = 2;
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type Catalogue::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+void Catalogue::Afficher(){
+	for (int i=0; i<nb_trajets; i++){
+		cout << "Trajet " << i << endl;
+		collection[i].Afficher();
+	}
+}
 
+void Catalogue::Ajouter(Trajet t){
+	if (nb_trajets <= taille){
+    collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
+    nb_trajets++;
+  }
+  else {
+	  taille *=2;
+	  Trajet ** tmp = new Trajet*[taille*2];
+	  for (int i =0; i<nb_trajets;i++){
+		  tmp[i]= list[i];
+		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
+		  //delete list[i];
+	  }
+	tmp[nb_trajets] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
+	nb_trajets++;
+	delete list;
+	list = tmp;
+	//delete tmp; le pointeur tmp est supprime par defaut a la fin de ajouter ?
+	
+  }
+}
+}
 //------------------------------------------------- Surcharge d'opérateurs
-Xxx & Xxx::operator = ( const Xxx & unXxx )
+Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
@@ -38,34 +68,39 @@ Xxx & Xxx::operator = ( const Xxx & unXxx )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Xxx::Xxx ( const Xxx & unXxx )
+Catalogue::Catalogue ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+    cout << "Appel au constructeur de copie de <Catalogue>" << endl;
 #endif
-} //----- Fin de Xxx (constructeur de copie)
+} //----- Fin de Catalogue (constructeur de copie)
 
 
-Xxx::Xxx ( )
+Catalogue::Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
+    cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de Xxx
+	collection = new Trajet*[taille];
+} //----- Fin de Catalogue
 
 
-Xxx::~Xxx ( )
+Catalogue::~Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de ~Xxx
+	for (int i =0; i<nb_trajets;i++){
+		delete collection[i];
+	}
+	delete [] collection;
+} //----- Fin de ~Catalogue
 
 
 //------------------------------------------------------------------ PRIVE

@@ -35,7 +35,9 @@ public:
     //
 
 	virtual void Afficher();
-
+	virtual const char* GetDepart() =0;
+	virtual const char* GetArrivee() =0;
+	//virtual const char* GetTransport() =0;
 //------------------------------------------------- Surcharge d'opérateurs
     Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :
@@ -50,7 +52,6 @@ public:
     // Contrat :
     //
 
-    Trajet (const char * villeA,const char * villeB );
     // Mode d'emploi :
     //
     // Contrat :
@@ -64,13 +65,13 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 
-    //protected:
+    protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
 
-        char * Depart;
-        char *Arrivee;   
+        /*char * Depart;
+        char *Arrivee;  */ 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>

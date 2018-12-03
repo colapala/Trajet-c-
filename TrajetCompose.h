@@ -10,6 +10,7 @@
 #if ! defined ( TRAJETCOMPOSE_H )
 #define TRAJETCOMPOSE_H
 #include "Trajet.h"
+#include "TrajetSimple.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -35,7 +36,11 @@ public:
     // Contrat :
     //
   virtual void Afficher();
-  void Ajouter(Trajet t);
+  void Ajouter(TrajetSimple t);
+  virtual const char* GetDepart();
+  virtual const char* GetArrivee();
+  //virtual const char* GetTransport()=0;
+  
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
     // Mode d'emploi :
@@ -51,7 +56,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose (Trajet t1,Trajet  t2, int nbelements );
+    TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements );
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,9 +74,9 @@ public:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    int nb_elements;
+    static int nb_elements;
     int curr_pos;
-    Trajet * list;
+    static Trajet ** list;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetCompose>

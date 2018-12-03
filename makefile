@@ -2,9 +2,10 @@
 
 Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o
 
-#main: Test.o Trajet.o TrajetSimple.o
-#	g++ -g Test.o Trajet.o TrajetSimple.o -o main
-#	valgrind --leak-check=yes ./main
+main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o
+	g++ -c Test.cpp Trajet.cpp TrajetSimple.cpp TrajetCompose.cpp
+	g++ -g Test.o Trajet.o TrajetSimple.o TrajetCompose.o -o main
+	valgrind --leak-check=full ./main
 
 Test.o: Test.cpp
 

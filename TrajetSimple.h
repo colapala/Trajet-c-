@@ -34,6 +34,9 @@ public:
     // Contrat :
     //
   virtual void Afficher();
+  const char* GetDepart();
+  const char* GetArrivee();
+  const char* GetTransport();
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
@@ -56,6 +59,7 @@ public:
     // Contrat :
     //
     
+	TrajetSimple ();
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :
@@ -70,6 +74,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     char* transport;
+	char* Depart;
+	char* Arrivee;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>

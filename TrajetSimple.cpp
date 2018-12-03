@@ -18,6 +18,7 @@ using namespace std;
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include <cstring>
+//#define MAP
 
 
 //------------------------------------------------------------- Constantes
@@ -32,20 +33,45 @@ using namespace std;
 //} //----- Fin de Méthode
 
 void TrajetSimple::Afficher(){
-  Trajet::Afficher();
-  cout<<transport<<endl;
+  cout << Depart << endl;
+  cout << Arrivee <<endl;
+  cout<<transport<<endl <<endl;
+}
+
+const char* TrajetSimple::GetDepart(){
+	return Depart;
+}
+
+const char* TrajetSimple::GetArrivee(){
+	return Arrivee;
+}
+
+const char* TrajetSimple::GetTransport(){
+	return transport;
 }
 //------------------------------------------------- Surcharge d'opérateurs
 TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
 // Algorithme :
 //
 {
-  
+	
+	delete [] Depart;
+	delete [] Arrivee;
+	delete [] transport;
+	
+	Depart = new char[strlen(unTrajetSimple.Depart)+1];
+    strcpy(Depart,unTrajetSimple.Depart);
+	Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
+    strcpy(Arrivee,unTrajetSimple.Arrivee);
+    transport = new char[strlen(unTrajetSimple.transport)+1];
+    strcpy(transport,unTrajetSimple.transport);
+	return *this;
 } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTrajetSimple.Depart,unTrajetSimple.Arrivee)
+//TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTrajetSimple.Depart,unTrajetSimple.Arrivee)
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 // Algorithme :
 //
 {
@@ -53,12 +79,27 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTraj
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
     
 #endif
+	
     transport = new char[strlen(unTrajetSimple.transport)+1];
     strcpy(transport,unTrajetSimple.transport);
+	Depart = new char[strlen(unTrajetSimple.Depart)+1];
+    strcpy(Depart,unTrajetSimple.Depart);
+	Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
+    strcpy(Arrivee,unTrajetSimple.Arrivee);
+    transport = new char[strlen(unTrajetSimple.transport)+1];
+    strcpy(transport,unTrajetSimple.transport);
+	
 } //----- Fin de TrajetSimple (constructeur de copie)
 
+//constructeur sans aucun parametres
+TrajetSimple::TrajetSimple (){
+#ifdef MAP
+    cout << "Appel au constructeur sans param de <TrajetSimple>" << endl;
+#endif
+}
 
-TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char * t ):Trajet(depart,arrivee)
+//TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char * t ):Trajet(Depart,Arrivee)
+TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char * t )
 										
 // Algorithme :
 //
@@ -66,6 +107,11 @@ TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
+	
+	Depart = new char[strlen(depart)+1];
+    strcpy(Depart,depart);
+	Arrivee = new char[strlen(arrivee)+1];
+    strcpy(Arrivee,arrivee);
     transport = new char[strlen(t)+1];
     strcpy(transport,t);
 } //----- Fin de TrajetSimple
@@ -78,7 +124,8 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-    
+	delete [] Depart;
+	delete [] Arrivee;
     delete [] transport;
 } //----- Fin de ~TrajetSimple
 
