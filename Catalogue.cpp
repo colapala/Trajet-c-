@@ -75,6 +75,8 @@ void Catalogue::Ajouter(const TrajetCompose &tc){
 	if (nb_trajets <=taille){
 		
 		collection[nb_trajets] = new TrajetCompose(tmp1, tmp2,tc.nb_elements);
+		//idee a tester : prendre un parametre un pointeur (Trajet* tc) et dire que collection[nb_trajets] = tc;
+		//collection[nb_trajets] = tc;
 		nb_trajets++;
 	}
 	else{
@@ -84,6 +86,9 @@ void Catalogue::Ajouter(const TrajetCompose &tc){
 			tmp[i]= collection[i];
 		}
 		tmp[nb_trajets] = new TrajetCompose(tmp1, tmp2, tc.nb_elements);
+		/*if (tc.curr_pos>2){
+			tmp[nb_trajets]->Ajouter(tc.list[2]);
+		}*/
 		nb_trajets++;
 		delete [] collection;
 		collection = tmp;
