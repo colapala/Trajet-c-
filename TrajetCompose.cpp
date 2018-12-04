@@ -46,7 +46,8 @@ const char* TrajetCompose::GetDepart() const{
 	return a;
 }
 const char* TrajetCompose::GetArrivee() const{
-	return list[curr_pos]->GetArrivee();
+	const char* b=list[curr_pos-1]->GetArrivee();
+	return b;
 }
 
 const char* TrajetCompose::GetTransport() const{
@@ -60,7 +61,7 @@ void TrajetCompose::Ajouter(const TrajetSimple &t){
   }
   else {
 		nb_elements *=2;
-		Trajet ** tmp = new Trajet*[nb_elements*2];
+		Trajet ** tmp = new Trajet*[nb_elements];
 		for (int i =0; i<curr_pos;i++){
 			tmp[i]= list[i];
 		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());

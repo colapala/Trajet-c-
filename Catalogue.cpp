@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -54,7 +55,7 @@ void Catalogue::Ajouter(const TrajetSimple &t){
     }
     else {
 	  taille *=2;
-	  Trajet ** tmp = new Trajet*[taille*2];
+	  Trajet ** tmp = new Trajet*[taille];
 	  for (int i =0; i<nb_trajets;i++){
 		  tmp[i]= collection[i];
 		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
@@ -81,7 +82,7 @@ void Catalogue::Ajouter(const TrajetCompose &tc){
 	}
 	else{
 		taille *=2;
-		Trajet ** tmp = new Trajet*[taille*2];
+		Trajet ** tmp = new Trajet*[taille];
 		for (int i =0; i<nb_trajets;i++){
 			tmp[i]= collection[i];
 		}
@@ -102,12 +103,28 @@ void Catalogue::Ajouter(const TrajetCompose &tc){
 		}
 	}*/
 }
+
+void Catalogue::Recherche(const char * depart, const char * arrivee){
+	cout<<"Recherche en cours...pour aller de "<<depart<<" a "<<arrivee<<endl;
+	bool trouve=false;
+	for (int i=0;i<nb_trajets;i++){
+		if(!strcmp(collection[i]->GetDepart(),depart) && !strcmp(collection[i]->GetArrivee(),arrivee) ){
+		cout<<"Trajet n°"<<i+1<<endl;
+		collection[i]->Afficher();
+		trouve=true;
+		}
+	}
+	if(trouve==false){
+	cout<<"aucun Résultat pour votre recherche"<<endl;
+	}
+}
 	
 //------------------------------------------------- Surcharge d'opérateurs
 Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
 // Algorithme :
 //
 {
+	return *this;
 } //----- Fin de operator =
 
 

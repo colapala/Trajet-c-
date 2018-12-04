@@ -14,18 +14,21 @@ int main(){
   TrajetSimple t2 ("Cherbourg", "Paris", "train");
   TC.Ajouter(t2);
 
-  TrajetSimple t3 ("Annecy", "Lyon", "Bus");
+  TrajetSimple t3 ("Annecy", "Londres", "Bus");
   TC.Ajouter(t3);
-  TC.Afficher();
+  //TC.Afficher();
   //TrajetCompose TC2(
   
   Catalogue C;
   C.Ajouter(t);
   C.Ajouter(TC);
-  //C.Ajouter(TC);
-  //C.Afficher();
+ // C.Ajouter(t2);
+  //C.Ajouter(t3);
+  C.Afficher();
+  C.Recherche("Lyon","Londres");
   
-  //cout << "depart :" <<TC.GetDepart() <<endl;
+ // cout << "depart :" <<TC.GetDepart() <<endl;
+//  cout<<"Arrivee: "<<TC.GetArrivee()<<endl;
 	/*TrajetSimple t2("Paris","Dijon","Avion");
 	TC.Ajouter(t2);
 	TC.Afficher();*/
