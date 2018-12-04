@@ -9,6 +9,7 @@
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
+//#include "TrajetSimple.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -37,7 +38,8 @@ public:
 	virtual void Afficher();
 	virtual const char* GetDepart() const =0;
 	virtual const char* GetArrivee() const =0;
-	//virtual const char* GetTransport() =0;
+	virtual const char* GetTransport() const=0;
+	//virtual void Ajouter(const TrajetSimple &t);
 //------------------------------------------------- Surcharge d'opérateurs
     Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :

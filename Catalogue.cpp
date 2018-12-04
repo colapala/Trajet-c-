@@ -16,12 +16,16 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
+#include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
+//#define MAP
 
 //------------------------------------------------------------- Constantes
-
+	int Catalogue::nb_trajets =0;
+	int Catalogue::taille =2;
 //----------------------------------------------------------------- PUBLIC
-int Catalogue::nb_trajets = 0;
-int Catalogue::taille = 2;
+
 
 //----------------------------------------------------- Méthodes publiques
 // type Catalogue::Méthode ( liste des paramètres )
@@ -31,34 +35,69 @@ int Catalogue::taille = 2;
 //} //----- Fin de Méthode
 
 void Catalogue::Afficher(){
-	for (int i=0; i<nb_trajets; i++){
-		cout << "Trajet " << i << endl;
-		collection[i].Afficher();
+	if (nb_trajets==0){
+		cout << "Catalogue vide" <<endl <<endl;
+	}
+	else {
+		cout << "Affichage du catalogue : " <<endl;
+		for (int i=0; i<nb_trajets; i++){
+			cout << "Trajet " << i+1 << endl;
+			collection[i]->Afficher();
+		}
 	}
 }
 
-void Catalogue::Ajouter(Trajet t){
-	if (nb_trajets <= taille){
-    collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
-    nb_trajets++;
-  }
-  else {
+void Catalogue::Ajouter(const TrajetSimple &t){
+	if (nb_trajets < taille){
+		collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
+		nb_trajets++;
+    }
+    else {
 	  taille *=2;
 	  Trajet ** tmp = new Trajet*[taille*2];
 	  for (int i =0; i<nb_trajets;i++){
-		  tmp[i]= list[i];
+		  tmp[i]= collection[i];
 		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
 		  //delete list[i];
 	  }
 	tmp[nb_trajets] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
 	nb_trajets++;
-	delete list;
-	list = tmp;
+	delete [] collection;
+	collection = tmp;
 	//delete tmp; le pointeur tmp est supprime par defaut a la fin de ajouter ?
 	
   }
 }
+
+void Catalogue::Ajouter(const TrajetCompose &tc){
+	TrajetSimple tmp1 (tc.list[0]->GetDepart(), tc.list[0]->GetArrivee(), tc.list[0]->GetTransport());
+	TrajetSimple tmp2(tc.list[1]->GetDepart(), tc.list[1]->GetArrivee(), tc.list[1]->GetTransport());
+	if (nb_trajets <=taille){
+		
+		collection[nb_trajets] = new TrajetCompose(tmp1, tmp2,tc.nb_elements);
+		nb_trajets++;
+	}
+	else{
+		taille *=2;
+		Trajet ** tmp = new Trajet*[taille*2];
+		for (int i =0; i<nb_trajets;i++){
+			tmp[i]= collection[i];
+		}
+		tmp[nb_trajets] = new TrajetCompose(tmp1, tmp2, tc.nb_elements);
+		nb_trajets++;
+		delete [] collection;
+		collection = tmp;
+	}
+	
+	//recopier les autres sous trajets d'un trajet compose s'il y en a
+	/*if (tc.curr_pos >2){
+		for (int i = tc.curr_pos; i<tc.nb_elements;i++){
+			TrajetSimple tmp_i (tc.list[i]->GetDepart(), tc.list[i]->GetArrivee(), tc.list[i]->GetTransport());
+			collection[nb_trajets]->list[i] = TrajetSimple(tmp_i);
+		}
+	}*/
 }
+	
 //------------------------------------------------- Surcharge d'opérateurs
 Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
 // Algorithme :
@@ -78,13 +117,14 @@ Catalogue::Catalogue ( const Catalogue & unCatalogue )
 } //----- Fin de Catalogue (constructeur de copie)
 
 
-Catalogue::Catalogue ( )
+Catalogue::Catalogue ()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+	
 	collection = new Trajet*[taille];
 } //----- Fin de Catalogue
 

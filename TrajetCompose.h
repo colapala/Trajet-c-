@@ -39,7 +39,7 @@ public:
   void Ajouter(const TrajetSimple &t);
   virtual const char* GetDepart() const ;
   virtual const char* GetArrivee() const;
-  //virtual const char* GetTransport()=0;
+  virtual const char* GetTransport() const;
   
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
@@ -67,6 +67,7 @@ public:
     //
     // Contrat :
     //
+	friend class Catalogue;
 
 //------------------------------------------------------------------ PRIVE
 

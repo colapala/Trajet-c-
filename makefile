@@ -1,6 +1,6 @@
 .PHONY: clean
 
-Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o
+Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o Catalogue.o
 
 main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 	g++ -c Test.cpp Trajet.cpp TrajetSimple.cpp TrajetCompose.cpp

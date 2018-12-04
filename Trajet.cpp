@@ -37,7 +37,7 @@ using namespace std;
 
 	const char* Trajet::GetDepart() const{ return "no";}
 	const char* Trajet::GetArrivee() const{return "no";}
-	//const char* Trajet::GetTransport(){return "no";}
+	const char* Trajet::GetTransport() const{return "no";}
 
 //------------------------------------------------- Surcharge d'opérateurs
 Trajet & Trajet::operator = ( const Trajet & unTrajet )

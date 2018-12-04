@@ -38,7 +38,8 @@ public:
     //
 
 	void Afficher();
-	void Ajouter(Trajet t);
+	void Ajouter(const TrajetSimple &t);
+	void Ajouter(const TrajetCompose &t);
 
 //------------------------------------------------- Surcharge d'opérateurs
     Catalogue & operator = ( const Catalogue & unCatalogue );
