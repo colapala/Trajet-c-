@@ -16,17 +16,18 @@ int main(){
 
   TrajetSimple t3 ("Annecy", "Londres", "Bus");
   TC.Ajouter(t3);
-  //TC.Afficher();
+  TrajetCompose TC1(TC);
+  TC1.Afficher();
   //TrajetCompose TC2(
   
-  Catalogue C;
+ /* Catalogue C;
   C.Ajouter(t);
-  TrajetCompose* TC_pt = & TC;
-  C.Ajouter(TC_pt);
+  //TrajetCompose* TC_pt = & TC;
+  C.Ajouter(TC);
   C.Ajouter(t2);
   C.Ajouter(t3);
   C.Afficher();
-  C.Recherche("Lyon","Londres");
+  C.Recherche("Lyon","Londres");*/
   
   //cout << "depart :" <<TC.GetDepart() <<endl;
   //cout << c.collection[

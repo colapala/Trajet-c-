@@ -70,11 +70,11 @@ void Catalogue::Ajouter(const TrajetSimple &t){
   }
 }
 
-void Catalogue::Ajouter(TrajetCompose* tc){
+void Catalogue::Ajouter(TrajetCompose &tc){
 
 	if (nb_trajets <=taille){
 		//PROBLEME DE DELETE ICI : CONSTRUCTEUR DE COPIE OU OPERATEUR = ?
-		collection[nb_trajets] = tc;
+		collection[nb_trajets] =new TrajetCompose(tc);
 		nb_trajets++;
 	}
 	else{
@@ -84,7 +84,7 @@ void Catalogue::Ajouter(TrajetCompose* tc){
 			tmp[i]= collection[i];
 		}
 		cout << "HELLO" <<endl;
-		tmp[nb_trajets] = tc;
+		tmp[nb_trajets] = new TrajetCompose(tc);
 		nb_trajets++;
 		delete [] collection;
 		collection = tmp;

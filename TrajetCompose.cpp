@@ -85,7 +85,13 @@ TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompos
 #endif
 	/*nb_elements=unTrajetCompose.nb_elements;
 	curr_pos=unTrajetCompose.curr_pos;*/
-	
+    nb_elements=unTrajetCompose.nb_elements;
+    curr_pos=unTrajetCompose.curr_pos;
+    list=new Trajet* [nb_elements];
+    for (int i=0;i<curr_pos;i++){
+	list[i]=unTrajetCompose.list[i];
+    }
+    return *this;
 } //----- Fin de operator =
 
 
@@ -98,6 +104,14 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
+ //erreur de free   
+    nb_elements=unTrajetCompose.nb_elements;
+    list=new Trajet*[nb_elements];
+    curr_pos=unTrajetCompose.curr_pos;
+   for (int i=0;i<curr_pos;i++){
+	list[i]=unTrajetCompose.list[i];
+    }
+
 } //----- Fin de TrajetCompose (constructeur de copie)
 
 
