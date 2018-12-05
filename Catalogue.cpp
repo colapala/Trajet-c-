@@ -70,14 +70,11 @@ void Catalogue::Ajouter(const TrajetSimple &t){
   }
 }
 
-void Catalogue::Ajouter(const TrajetCompose &tc){
-	TrajetSimple tmp1 (tc.list[0]->GetDepart(), tc.list[0]->GetArrivee(), tc.list[0]->GetTransport());
-	TrajetSimple tmp2(tc.list[1]->GetDepart(), tc.list[1]->GetArrivee(), tc.list[1]->GetTransport());
+void Catalogue::Ajouter(TrajetCompose* tc){
+
 	if (nb_trajets <=taille){
-		
-		collection[nb_trajets] = new TrajetCompose(tmp1, tmp2,tc.nb_elements);
-		//idee a tester : prendre un parametre un pointeur (Trajet* tc) et dire que collection[nb_trajets] = tc;
-		//collection[nb_trajets] = tc;
+		//PROBLEME DE DELETE ICI : CONSTRUCTEUR DE COPIE OU OPERATEUR = ?
+		collection[nb_trajets] = tc;
 		nb_trajets++;
 	}
 	else{
@@ -86,22 +83,12 @@ void Catalogue::Ajouter(const TrajetCompose &tc){
 		for (int i =0; i<nb_trajets;i++){
 			tmp[i]= collection[i];
 		}
-		tmp[nb_trajets] = new TrajetCompose(tmp1, tmp2, tc.nb_elements);
-		/*if (tc.curr_pos>2){
-			tmp[nb_trajets]->Ajouter(tc.list[2]);
-		}*/
+		cout << "HELLO" <<endl;
+		tmp[nb_trajets] = tc;
 		nb_trajets++;
 		delete [] collection;
 		collection = tmp;
 	}
-	
-	//recopier les autres sous trajets d'un trajet compose s'il y en a
-	/*if (tc.curr_pos >2){
-		for (int i = tc.curr_pos; i<tc.nb_elements;i++){
-			TrajetSimple tmp_i (tc.list[i]->GetDepart(), tc.list[i]->GetArrivee(), tc.list[i]->GetTransport());
-			collection[nb_trajets]->list[i] = TrajetSimple(tmp_i);
-		}
-	}*/
 }
 
 void Catalogue::Recherche(const char * depart, const char * arrivee){

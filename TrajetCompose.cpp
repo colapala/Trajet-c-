@@ -80,7 +80,12 @@ TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompos
 // Algorithme :
 //
 {
-	return *this;
+#ifdef MAP
+    cout << "Appel de l'operateur = du <TrajetCompose>" << endl;
+#endif
+	/*nb_elements=unTrajetCompose.nb_elements;
+	curr_pos=unTrajetCompose.curr_pos;*/
+	
 } //----- Fin de operator =
 
 

@@ -39,7 +39,7 @@ public:
 
 	void Afficher();
 	void Ajouter(const TrajetSimple &t);
-	void Ajouter(const TrajetCompose &t);
+	void Ajouter(TrajetCompose* tc);
 	void Recherche(const char* depart,const char* arrivee);
 
 //------------------------------------------------- Surcharge d'opérateurs

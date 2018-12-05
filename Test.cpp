@@ -21,16 +21,20 @@ int main(){
   
   Catalogue C;
   C.Ajouter(t);
-  C.Ajouter(TC);
- // C.Ajouter(t2);
-  //C.Ajouter(t3);
+  TrajetCompose* TC_pt = & TC;
+  C.Ajouter(TC_pt);
+  C.Ajouter(t2);
+  C.Ajouter(t3);
   C.Afficher();
   C.Recherche("Lyon","Londres");
   
- // cout << "depart :" <<TC.GetDepart() <<endl;
-//  cout<<"Arrivee: "<<TC.GetArrivee()<<endl;
+  //cout << "depart :" <<TC.GetDepart() <<endl;
+  //cout << c.collection[
+  //cout<<"Arrivee: "<<TC.GetArrivee()<<endl;
 	/*TrajetSimple t2("Paris","Dijon","Avion");
 	TC.Ajouter(t2);
 	TC.Afficher();*/
+  //delete TC_pt;
+
 	return 0;
 }
