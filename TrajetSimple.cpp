@@ -55,9 +55,9 @@ TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
 //
 {
 	
-	delete [] Depart;
+	/*delete [] Depart;
 	delete [] Arrivee;
-	delete [] transport;
+	delete [] transport;*/
 	
 	Depart = new char[strlen(unTrajetSimple.Depart)+1];
     strcpy(Depart,unTrajetSimple.Depart);
@@ -80,14 +80,13 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
     
 #endif
 	
-    transport = new char[strlen(unTrajetSimple.transport)+1];
+    /*transport = new char[strlen(unTrajetSimple.transport)+1];
     strcpy(transport,unTrajetSimple.transport);
 	Depart = new char[strlen(unTrajetSimple.Depart)+1];
     strcpy(Depart,unTrajetSimple.Depart);
 	Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
-    strcpy(Arrivee,unTrajetSimple.Arrivee);
-    transport = new char[strlen(unTrajetSimple.transport)+1];
-    strcpy(transport,unTrajetSimple.transport);
+    strcpy(Arrivee,unTrajetSimple.Arrivee);*/
+	*this=unTrajetSimple;
 	
 } //----- Fin de TrajetSimple (constructeur de copie)
 

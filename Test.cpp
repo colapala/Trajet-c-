@@ -16,19 +16,23 @@ int main(){
 
   TrajetSimple t3 ("Annecy", "Londres", "Bus");
   TC.Ajouter(t3);
+  TrajetSimple t4(t3);
+  //t4=t3;
+  //t4.Afficher();
   //TC.Afficher();
   //TrajetCompose TC2(
   
   Catalogue C;
   C.Ajouter(&t);
-  TrajetCompose* TC_pt = & TC;
+  //TrajetCompose* TC_pt = & TC;
   //TrajetCompose ** TC_pt2 = &TC_pt;
   C.Ajouter(&t2);
   C.Ajouter(&TC);
   
-  //C.Ajouter(t3);
+  C.Ajouter(&t3);
   C.Afficher();
   C.Recherche("Lyon","Londres");
+ C.Recherche("Lyon","Marseille");
   
   /*Trajet* test;
   cout << test << endl;

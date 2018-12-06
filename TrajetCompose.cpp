@@ -56,7 +56,7 @@ const char* TrajetCompose::GetTransport() const{
 
 void TrajetCompose::Ajouter(const TrajetSimple &t){
   if (curr_pos < nb_elements){
-    list[curr_pos]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
+    list[curr_pos]= new TrajetSimple(t);
     curr_pos++;
   }
   else {
@@ -67,7 +67,7 @@ void TrajetCompose::Ajouter(const TrajetSimple &t){
 		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
 		  //delete list[i];
 		}
-		tmp[curr_pos] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
+		tmp[curr_pos] = new TrajetSimple(t);
 		curr_pos++;
 		delete [] list;
 		list = tmp;
@@ -85,7 +85,7 @@ TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompos
 #endif
 	/*nb_elements=unTrajetCompose.nb_elements;
 	curr_pos=unTrajetCompose.curr_pos;*/
-	
+	return *this;
 } //----- Fin de operator =
 
 
