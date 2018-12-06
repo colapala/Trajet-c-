@@ -20,13 +20,24 @@ int main(){
   //TrajetCompose TC2(
   
   Catalogue C;
-  C.Ajouter(t);
+  C.Ajouter(&t);
   TrajetCompose* TC_pt = & TC;
-  C.Ajouter(TC_pt);
-  C.Ajouter(t2);
-  C.Ajouter(t3);
+  //TrajetCompose ** TC_pt2 = &TC_pt;
+  C.Ajouter(&t2);
+  C.Ajouter(&TC);
+  
+  //C.Ajouter(t3);
   C.Afficher();
   C.Recherche("Lyon","Londres");
+  
+  /*Trajet* test;
+  cout << test << endl;
+  test= new TrajetCompose(t,t1,2);
+  delete test;
+  test = TC_pt;
+  cout << "affichage de test" << endl;
+  cout << test << " " << TC_pt <<endl;
+  test->Afficher();*/
   
   //cout << "depart :" <<TC.GetDepart() <<endl;
   //cout << c.collection[

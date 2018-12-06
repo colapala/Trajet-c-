@@ -37,9 +37,9 @@ public:
     //
   virtual void Afficher();
   void Ajouter(const TrajetSimple &t);
-  virtual const char* GetDepart() const ;
-  virtual const char* GetArrivee() const;
-  virtual const char* GetTransport() const;
+  const char* GetDepart() const ;
+  const char* GetArrivee() const;
+  const char* GetTransport() const;
   
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
@@ -56,6 +56,7 @@ public:
     // Contrat :
     //
 
+	//TrajetCompose (int nbelements );
     TrajetCompose (const TrajetSimple &t1, const TrajetSimple &t2, int nbelements );
     // Mode d'emploi :
     //
@@ -78,6 +79,7 @@ public:
     int nb_elements;
     int curr_pos;
     Trajet ** list;
+	//bool compose = true;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetCompose>

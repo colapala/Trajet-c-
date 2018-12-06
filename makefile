@@ -5,7 +5,7 @@ Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o Catalogue.o
 main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o
 	g++ -c Test.cpp Trajet.cpp TrajetSimple.cpp TrajetCompose.cpp
 	g++ -g Test.o Trajet.o TrajetSimple.o TrajetCompose.o -o main
-	valgrind --leak-check=full ./main
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind_output.txt ./main
 
 Test.o: Test.cpp
 
@@ -19,7 +19,7 @@ TrajetCompose.o: TrajetCompose.cpp TrajetCompose.h
 
 %.ex: 
 	g++ -g $^ -o $@
-	valgrind --leak-check=yes ./$@
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --max-stackframe=10485760 ./$@
 
 %.o: %.cpp 
 	g++ -ansi -pedantic -Wall -std=c++11 -c $< -o $@ 

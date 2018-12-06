@@ -76,6 +76,7 @@ protected:
     char* transport;
 	char* Depart;
 	char* Arrivee;
+	//bool compose = false;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>

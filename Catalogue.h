@@ -38,8 +38,8 @@ public:
     //
 
 	void Afficher();
-	void Ajouter(const TrajetSimple &t);
-	void Ajouter(TrajetCompose* tc);
+	void Ajouter( TrajetSimple* t);
+	void Ajouter(TrajetCompose *tc);
 	void Recherche(const char* depart,const char* arrivee);
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -78,6 +78,7 @@ protected:
 	Trajet ** collection;
 	static int taille;
 	static int nb_trajets;
+	
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>

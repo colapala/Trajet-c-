@@ -34,7 +34,7 @@ public:
     //
     // Contrat :
     //
-
+	//bool compose =false;
 	virtual void Afficher();
 	virtual const char* GetDepart() const =0;
 	virtual const char* GetArrivee() const =0;

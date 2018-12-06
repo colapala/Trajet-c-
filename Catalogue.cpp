@@ -48,9 +48,10 @@ void Catalogue::Afficher(){
 	}
 }
 
-void Catalogue::Ajouter(const TrajetSimple &t){
+void Catalogue::Ajouter( TrajetSimple* t){
 	if (nb_trajets < taille){
-		collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
+		collection[nb_trajets]=t;
+		//collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
 		nb_trajets++;
     }
     else {
@@ -61,7 +62,8 @@ void Catalogue::Ajouter(const TrajetSimple &t){
 		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
 		  //delete list[i];
 	  }
-	tmp[nb_trajets] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
+	tmp[nb_trajets] =t;
+	//tmp[nb_trajets] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
 	nb_trajets++;
 	delete [] collection;
 	collection = tmp;
@@ -70,10 +72,12 @@ void Catalogue::Ajouter(const TrajetSimple &t){
   }
 }
 
-void Catalogue::Ajouter(TrajetCompose* tc){
-
-	if (nb_trajets <=taille){
-		//PROBLEME DE DELETE ICI : CONSTRUCTEUR DE COPIE OU OPERATEUR = ?
+void Catalogue::Ajouter(TrajetCompose *tc){
+	//PROBLEME DE DELETE ICI : CONSTRUCTEUR DE COPIE OU OPERATEUR = ?
+	if (nb_trajets <taille){
+		
+		//idee : mettre en parametre TrajetCompose, pas de pointeur, et travailler sur le constructeur de copie ou l'operateur egal
+		cout << "MAP should be called here" <<endl;
 		collection[nb_trajets] = tc;
 		nb_trajets++;
 	}
@@ -84,11 +88,14 @@ void Catalogue::Ajouter(TrajetCompose* tc){
 			tmp[i]= collection[i];
 		}
 		cout << "HELLO" <<endl;
+		
+		cout << "MAP should be called here" <<endl;
 		tmp[nb_trajets] = tc;
 		nb_trajets++;
 		delete [] collection;
 		collection = tmp;
 	}
+	//sdelete tc;
 }
 
 void Catalogue::Recherche(const char * depart, const char * arrivee){
@@ -145,8 +152,10 @@ Catalogue::~Catalogue ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+	cout <<"this pointer points to " <<this <<endl;
 	for (int i =0; i<nb_trajets;i++){
-		delete collection[i];
+		//collection[i]->~Trajet();
+		//delete collection[i];
 	}
 	delete [] collection;
 } //----- Fin de ~Catalogue

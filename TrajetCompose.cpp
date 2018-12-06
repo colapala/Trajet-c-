@@ -19,7 +19,7 @@ using namespace std;
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include <cstring>
-//#define MAP
+#define MAP
 
 //------------------------------------------------------------- Constantes
 
@@ -98,10 +98,19 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
+	nb_elements=unTrajetCompose.nb_elements;
+	curr_pos = unTrajetCompose.curr_pos;
+	list = new Trajet*[nb_elements];
+	for (int i =0; i<curr_pos;i++){
+		list[i] = new TrajetSimple(unTrajetCompose.list[i]->GetDepart(), unTrajetCompose.list[i]->GetArrivee(), unTrajetCompose.list[i]->GetTransport());
+	}
 } //----- Fin de TrajetCompose (constructeur de copie)
 
 
-
+/*TrajetCompose::TrajetCompose ( int nbelements ){
+	nb_elements = nbelements;
+	list = new Trajet*[nb_elements];
+}*/
 //TrajetCompose::TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements ):Trajet(t1.Depart,t2.Arrivee)
 TrajetCompose::TrajetCompose (const TrajetSimple &t1,const TrajetSimple &t2, int nbelements )
 // Algorithme :
@@ -110,7 +119,7 @@ TrajetCompose::TrajetCompose (const TrajetSimple &t1,const TrajetSimple &t2, int
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
-
+	
     nb_elements = nbelements;
     list = new Trajet*[nb_elements];
     curr_pos = 2;
@@ -129,6 +138,7 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+	cout <<"this pointer points to " <<this <<endl;
 	for (int i =0; i<curr_pos;i++){
 		delete list[i];
 	}
