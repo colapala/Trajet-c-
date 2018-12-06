@@ -73,11 +73,8 @@ void Catalogue::Ajouter( TrajetSimple* t){
 }
 
 void Catalogue::Ajouter(TrajetCompose *tc){
-	//PROBLEME DE DELETE ICI : CONSTRUCTEUR DE COPIE OU OPERATEUR = ?
+
 	if (nb_trajets <taille){
-		
-		//idee : mettre en parametre TrajetCompose, pas de pointeur, et travailler sur le constructeur de copie ou l'operateur egal
-		cout << "MAP should be called here" <<endl;
 		collection[nb_trajets] = tc;
 		nb_trajets++;
 	}
@@ -87,9 +84,6 @@ void Catalogue::Ajouter(TrajetCompose *tc){
 		for (int i =0; i<nb_trajets;i++){
 			tmp[i]= collection[i];
 		}
-		cout << "HELLO" <<endl;
-		
-		cout << "MAP should be called here" <<endl;
 		tmp[nb_trajets] = tc;
 		nb_trajets++;
 		delete [] collection;
@@ -152,11 +146,11 @@ Catalogue::~Catalogue ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-	cout <<"this pointer points to " <<this <<endl;
-	for (int i =0; i<nb_trajets;i++){
-		//collection[i]->~Trajet();
-		//delete collection[i];
-	}
+	//cout <<"this pointer points to " <<this <<endl;
+	/*for (int i =0; i<nb_trajets;i++){
+		collection[i]->~Trajet();
+		delete collection[i];
+	}*/
 	delete [] collection;
 } //----- Fin de ~Catalogue
 

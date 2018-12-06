@@ -1,16 +1,15 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+                           Menu  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    e-ma ) il               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
-#if ! defined ( TRAJETCOMPOSE_H )
-#define TRAJETCOMPOSE_H
-#include "Trajet.h"
-#include "TrajetSimple.h"
+//---------- Interface de la classe <Menu> (fichier Menu.h) ----------------
+#if ! defined ( Menu_H )
+#define Menu_H
+//#include "MenuSimple.h"
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -19,12 +18,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
+// Rôle de la classe <Menu>
 //
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose : public Trajet
+class Menu 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,54 +34,43 @@ public:
     //
     // Contrat :
     //
-  virtual void Afficher();
-  void Ajouter(const TrajetSimple &t);
-  const char* GetDepart() const ;
-  const char* GetArrivee() const;
-  const char* GetTransport() const;
-  bool VerifContrainte(const TrajetSimple& nouvTrajet);
-  
+	
 //------------------------------------------------- Surcharge d'opérateurs
-    TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
+    Menu & operator = ( const Menu & unMenu );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetCompose ( const TrajetCompose & unTrajetCompose );
+    Menu ( const Menu & unMenu );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-	//TrajetCompose (int nbelements );
-    TrajetCompose (const TrajetSimple &t1, const TrajetSimple &t2, int nbelements );
     // Mode d'emploi :
     //
     // Contrat :
     //
-
-    virtual ~TrajetCompose ( );
+    Menu();
+    virtual ~Menu ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-	friend class Catalogue;
 
 //------------------------------------------------------------------ PRIVE
 
- protected:
+    protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    int nb_elements;
-    int curr_pos;
-    Trajet ** list;
-	//bool compose = true;
+
+        
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
+//-------------------------------- Autres définitions dépendantes de <Menu>
 
-#endif // TRAJETCOMPOSE_H
+#endif // Menu_H
+

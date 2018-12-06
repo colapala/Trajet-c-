@@ -123,7 +123,7 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-	cout <<"this pointer points to " <<this <<endl;
+	//cout <<"this pointer points to " <<this <<endl;
 	delete [] Depart;
 	delete [] Arrivee;
     delete [] transport;
