@@ -8,6 +8,7 @@ using namespace std;
 int main(){
 	const int MAX_LENGTH=10;
 	int choix;
+	int nbElements;
 	char* villeA=new char[MAX_LENGTH];
 	char* villeB=new char[MAX_LENGTH];
 	char* transport=new char[MAX_LENGTH];
@@ -16,7 +17,7 @@ int main(){
 
 
 	while(!arret){
-		C.Afficher();
+		//C.Afficher();
 		cout<<"Bonjour, et bienvenue dans notre catalogue de trajets"<<endl;
 		cout<<"Tapez 1 pour ajouter un TrajetSimple"<<endl;
 		cout<<"Tapez 2 pour ajouter un TrajetCompose"<<endl;
@@ -30,48 +31,67 @@ int main(){
 		switch(choix){
 
 			case 1: 
-				{
+				
 				cout<<"vous avez choisi l'ajout de TrajetSimple"<<endl;
 				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport"<<endl;
 
 				cin>>villeA>>villeB>>transport;
 				//cout << villeA << endl;
-				TrajetSimple t(villeA,villeB,transport);
+				//je ne sais pas pourquoi il faut mettre static pour que ça marche
+				static TrajetSimple t(villeA,villeB,transport);
 				C.Ajouter(&t);
 				
 				cout<<"ajoute"<<endl;
 				break;
-			}
+			
 
 			case 2:
-				{
+				
 				cout<<"vous avez choisi l'ajout de Trajetcompose"<<endl;
-				break;
+
+						cout<<"veuillez renseigner le nombre de trajets a ajouter"<<endl;
+				cin>>nbElements;
+				
+				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du 1er trajet "<<endl;
+				cin>>villeA>>villeB>>transport;
+				static TrajetSimple t1(villeA,villeB,transport);
+
+				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du 2e trajet"<<endl;
+				cin>>villeA>>villeB>>transport;
+				static TrajetSimple t2(villeA,villeB,transport);
+
+				static TrajetCompose TC(t1,t2,nbElements);
+
+				for (int i=3;i<=nbElements;i++)	{
+					cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du trajet"<<endl;
+				cin>>villeA>>villeB>>transport;
+				TrajetSimple t3(villeA,villeB,transport);
+					TC.Ajouter(t3);
 				}
+				
+				C.Ajouter(&TC);
+				break;
+				
 
 			case 3:
-				{
 				cout<<"vous avez choisi la recherche de trajets"<<endl;	
+				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee "<<endl;
 				cin>>villeA>>villeB;
+				endl(cout);
 				C.Recherche(villeA,villeB);
 				break;
-				}
 
 			case 4:
-				{
 				cout<<"vous avez choisi l'affichage des trajets: "<<endl;
 				C.Afficher();
 				break;
-				}
 
 			case 5:
-				{
 				cout<<"Au revoir"<<endl;
 				arret=true;
 				break;
-				}
 		}
-		cout<<"  "<<endl;
+		endl(cout);
 	}
 
 	delete [] villeA;
