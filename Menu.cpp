@@ -22,7 +22,6 @@ int main(){
 
 
 	while(!arret){
-		//C.Afficher();
 		cout<<"Bonjour, et bienvenue dans notre catalogue de trajets"<<endl;
 		cout<<"Tapez 1 pour ajouter un TrajetSimple"<<endl;
 		cout<<"Tapez 2 pour ajouter un TrajetCompose"<<endl;
@@ -44,7 +43,6 @@ int main(){
 				TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);
 				C.Ajouter(TS[indexSimple]);
 				
-				cout<<"ajoute"<<endl;
 				indexSimple++;
 				break;
 				

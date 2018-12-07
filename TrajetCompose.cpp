@@ -66,7 +66,6 @@ bool TrajetCompose::VerifContrainte(const TrajetSimple& nouvTrajet){
 void TrajetCompose::Ajouter(const TrajetSimple &t){
 	if (VerifContrainte(t) ==true){
 	  if (curr_pos < nb_elements){
-		//list[curr_pos]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
 		list[curr_pos]= new TrajetSimple(t);
 		curr_pos++;
 	  }
@@ -75,19 +74,14 @@ void TrajetCompose::Ajouter(const TrajetSimple &t){
 			Trajet ** tmp = new Trajet*[nb_elements];
 			for (int i =0; i<curr_pos;i++){
 				tmp[i]= list[i];
-			  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
-			  //delete list[i];
 			}
-			//tmp[curr_pos] = new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
 			tmp[curr_pos] = new TrajetSimple(t);
 			curr_pos++;
 			delete [] list;
 			list = tmp;
-		//delete tmp; le pointeur tmp est supprime par defaut a la fin de ajouter ?
 	  }
 	}
 	else {
-		//cout << t.GetDepart() <<list[curr_pos-1]->GetArrivee() <<VerifContrainte(t) <<endl;
 		cout << "Opération échouée : il faut que la ville de départ corresponde à la ville d'arrivée du sous-trajet précédent" <<endl;
 	}
 
@@ -100,14 +94,11 @@ TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompos
 #ifdef MAP
     cout << "Appel de l'operateur = du <TrajetCompose>" << endl;
 #endif
-	/*nb_elements=unTrajetCompose.nb_elements;
-	curr_pos=unTrajetCompose.curr_pos;*/
 	return *this;
 } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-//TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose ):Trajet(unTrajetCompose.list[0].Depart, unTrajetCompose.list[unTrajetCompose.nb_elements-1].Arrivee)
 TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 // Algorithme :
 //
@@ -124,11 +115,6 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 } //----- Fin de TrajetCompose (constructeur de copie)
 
 
-/*TrajetCompose::TrajetCompose ( int nbelements ){
-	nb_elements = nbelements;
-	list = new Trajet*[nb_elements];
-}*/
-//TrajetCompose::TrajetCompose (TrajetSimple t1,TrajetSimple t2, int nbelements ):Trajet(t1.Depart,t2.Arrivee)
 TrajetCompose::TrajetCompose (const TrajetSimple &t1,const TrajetSimple &t2, int nbelements )
 // Algorithme :
 //
