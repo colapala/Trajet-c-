@@ -3,8 +3,9 @@
 #include "TrajetCompose.h"
 #include <iostream>
 #include "Catalogue.h"
+#include "Menu.h"
 using namespace std;
-
+//!! Ce programme peut faire des erreurs dûes à l'allocation de TS** de taille MAX_LENGTH, elles ne sont pas importantes, elles veulent juste dire que tout l'espace n'est pas utilisé
 int main(){
 	const int MAX_LENGTH=10;
 	int choix;
@@ -13,8 +14,10 @@ int main(){
 	char* villeB=new char[MAX_LENGTH];
 	char* transport=new char[MAX_LENGTH];
 	Catalogue C;
-	TrajetSimple TS[MAX_LENGTH];
-	int index=0;
+	TrajetSimple** TS=new TrajetSimple*[MAX_LENGTH];
+	TrajetCompose** TC=new TrajetCompose*[MAX_LENGTH];		
+	int indexSimple=0;
+	int indexComp=0;
 	bool arret=false; 
 
 
@@ -29,26 +32,23 @@ int main(){
 
 
 		cin>>choix;
-
+		endl(cout);
 		switch(choix){
 
 			case 1: 
-				{
+				
 				cout<<"vous avez choisi l'ajout de TrajetSimple"<<endl;
 				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport"<<endl;
 
 				cin>>villeA>>villeB>>transport;
-				//cout << villeA << endl;
-				//TrajetSimple t(villeA,villeB,transport);
-				TS[index]=TrajetSimple(villeA,villeB,transport);
-
-				C.Ajouter(&TS[index]);
+				TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);
+				C.Ajouter(TS[indexSimple]);
 				
 				cout<<"ajoute"<<endl;
-				index++;
+				indexSimple++;
 				break;
-			}
-
+				
+			
 			case 2:
 				
 				cout<<"vous avez choisi l'ajout de Trajetcompose"<<endl;
@@ -56,24 +56,19 @@ int main(){
 						cout<<"veuillez renseigner le nombre de trajets a ajouter"<<endl;
 				cin>>nbElements;
 				
-				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du 1er trajet "<<endl;
-				cin>>villeA>>villeB>>transport;
-				static TrajetSimple t1(villeA,villeB,transport);
-
-				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du 2e trajet"<<endl;
-				cin>>villeA>>villeB>>transport;
-				static TrajetSimple t2(villeA,villeB,transport);
-
-				static TrajetCompose TC(t1,t2,nbElements);
-
-				for (int i=3;i<=nbElements;i++)	{
-					cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du trajet"<<endl;
-				cin>>villeA>>villeB>>transport;
-				TrajetSimple t3(villeA,villeB,transport);
-					TC.Ajouter(t3);
+				for (int i=0;i<nbElements;i++)	{
+					cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du "<<i+1<<"e trajet"<<endl;
+					cin>>villeA>>villeB>>transport;
+					TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);
+					if(i==1){
+						TC[indexComp]=new TrajetCompose(*TS[indexSimple-1],*TS[indexSimple],nbElements);
+					}else if(i>1){
+					TC[indexComp]->Ajouter(*TS[indexSimple]);
+					}
+					indexSimple++;
 				}
-				
-				C.Ajouter(&TC);
+				C.Ajouter(TC[indexComp]);
+				indexComp++;
 				break;
 				
 
@@ -87,6 +82,7 @@ int main(){
 
 			case 4:
 				cout<<"vous avez choisi l'affichage des trajets: "<<endl;
+				endl(cout);
 				C.Afficher();
 				break;
 
@@ -97,7 +93,17 @@ int main(){
 		}
 		endl(cout);
 	}
+
+	for (int i =0; i<MAX_LENGTH;i++){
+		delete TS[i];
+	}
     	delete [] TS;
+
+	for (int i =0; i<MAX_LENGTH;i++){
+		delete TC[i];
+	}
+    	delete [] TC;
+
 	delete [] villeA;
 	delete [] villeB;
 	delete [] transport;

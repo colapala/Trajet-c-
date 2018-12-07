@@ -141,9 +141,12 @@ TrajetCompose::TrajetCompose (const TrajetSimple &t1,const TrajetSimple &t2, int
     list = new Trajet*[nb_elements];
     curr_pos = 2;
  	
-
+	if(!strcmp(t1.GetArrivee(),t2.GetDepart())){
     list[0]= new TrajetSimple(t1.GetDepart(), t1.GetArrivee(), t1.GetTransport());
     list[1]= new TrajetSimple (t2.GetDepart(), t2.GetArrivee(), t2.GetTransport());
+	}else{
+	cerr<<"erreur"<<endl;
+	}
     
 } //----- Fin de TrajetCompose
 
