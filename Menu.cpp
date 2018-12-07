@@ -13,6 +13,8 @@ int main(){
 	char* villeB=new char[MAX_LENGTH];
 	char* transport=new char[MAX_LENGTH];
 	Catalogue C;
+	TrajetSimple TS[MAX_LENGTH];
+	int index=0;
 	bool arret=false; 
 
 
@@ -31,19 +33,21 @@ int main(){
 		switch(choix){
 
 			case 1: 
-				
+				{
 				cout<<"vous avez choisi l'ajout de TrajetSimple"<<endl;
 				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport"<<endl;
 
 				cin>>villeA>>villeB>>transport;
 				//cout << villeA << endl;
-				//je ne sais pas pourquoi il faut mettre static pour que ça marche
-				static TrajetSimple t(villeA,villeB,transport);
-				C.Ajouter(&t);
+				//TrajetSimple t(villeA,villeB,transport);
+				TS[index]=TrajetSimple(villeA,villeB,transport);
+
+				C.Ajouter(&TS[index]);
 				
 				cout<<"ajoute"<<endl;
+				index++;
 				break;
-			
+			}
 
 			case 2:
 				
@@ -93,7 +97,7 @@ int main(){
 		}
 		endl(cout);
 	}
-
+    	delete [] TS;
 	delete [] villeA;
 	delete [] villeB;
 	delete [] transport;
