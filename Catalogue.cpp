@@ -107,6 +107,48 @@ void Catalogue::Recherche(const char * depart, const char * arrivee)
 	cout<<"aucun Résultat pour votre recherche"<<endl;
 	}
 }
+
+void Catalogue::RechercheAvance(const char * depart, const char * arrivee)
+// Algorithme :
+//
+{
+	bool trouve=false;
+	int NbTour=0;
+	const char* NouvDepart=depart;
+
+	for (int i=0;i<nb_trajets;i++){
+		if(!strcmp(collection[i]->GetDepart(),depart) && !strcmp(collection[i]->GetArrivee(),arrivee) ){
+			cout<<"Trajet n°"<<i+1<<endl;
+			collection[i]->Afficher();
+			trouve=true;
+		}
+		if(!strcmp(collection[i]->GetDepart(),NouvDepart)){
+		   NouvDepart=collection[i]->GetArrivee();
+			cout<<"Trajet n°"<<i+1<<endl;
+			collection[i]->Afficher();
+		   for(int j=0;j<nb_trajets;j++){
+		    if(j!=i){
+		     if(!strcmp(collection[j]->GetDepart(),NouvDepart) && !strcmp(collection[j]->GetArrivee(),arrivee) ){
+			cout<<"Trajet n°"<<j+1<<endl;
+			collection[j]->Afficher();
+			trouve=true;
+			break;
+		        }
+			if(!strcmp(collection[j]->GetDepart(),NouvDepart)){
+			NouvDepart=collection[j]->GetArrivee();
+			cout<<"Trajet n°"<<j+1<<endl;
+			collection[j]->Afficher();
+			j=0;
+			NbTour++;
+			if(NbTour>nb_trajets){
+			break;
+			}
+			}
+		    }
+		   }
+		}
+	}
+}
 	
 //------------------------------------------------- Surcharge d'opérateurs
 Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )

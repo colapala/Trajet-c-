@@ -56,6 +56,11 @@ public:
     // Contrat :
     // aucun
     
+	void RechercheAvance(const char* depart,const char* arrivee);
+    // Mode d'emploi :
+    // Recherche un Trajet ayant les villes de départ et d'arrivée correspondantes aux villes placées en paramètres
+    // Contrat :
+    // aucun
 
 //------------------------------------------------- Surcharge d'opérateurs
     Catalogue & operator = ( const Catalogue & unCatalogue );
