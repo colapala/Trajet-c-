@@ -17,7 +17,7 @@ TrajetSimple.o: TrajetSimple.cpp TrajetSimple.h
 
 TrajetCompose.o: TrajetCompose.cpp TrajetCompose.h
 
-#Catalogue.o: Catalogue.cpp Catalogue.h
+Catalogue.o: Catalogue.cpp Catalogue.h
 
 %.ex: 
 	g++ -g $^ -o $@

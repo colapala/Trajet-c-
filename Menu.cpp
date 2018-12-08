@@ -43,9 +43,7 @@ int main(){
 
 				cin>>villeA>>villeB>>transport;
 				TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);
-				C.Ajouter(TS[indexSimple]);
-				
-				cout<<"ajoute"<<endl;
+				C.Ajouter(TS[indexSimple]);			
 				indexSimple++;
 				break;
 				
@@ -55,7 +53,9 @@ int main(){
 				cout<<"vous avez choisi l'ajout de Trajetcompose"<<endl;
 
 				cout<<"veuillez renseigner le nombre de trajets a ajouter"<<endl;
+			
 				cin>>nbElements;
+
 				bool ErrRemplissage;
 				for (int i=0;i<nbElements;i++)	{
 					ErrRemplissage = true;
@@ -67,7 +67,9 @@ int main(){
 						}
 						else {
 							cout << "Il faut que la ville de départ corresponde à la ville d'arrivée du sous trajet-précédent. Veuillez à nouveau ressaisir un trajet valide."<<endl;
+							endl(cout);
 							cout <<"la ville d'arrivée du sous trajet précédent est : " <<TS[indexSimple-1]->GetArrivee() <<endl;
+							endl(cout);
 						}
 					}
 					TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);

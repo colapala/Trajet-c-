@@ -29,13 +29,11 @@ using namespace std;
 
 
 //----------------------------------------------------- Méthodes publiques
-// type Catalogue::Méthode ( liste des paramètres )
+
+void Catalogue::Afficher()
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
-
-void Catalogue::Afficher(){
+{
 	if (nb_trajets==0){
 		cout << "Catalogue vide" <<endl <<endl;
 	}
@@ -48,10 +46,12 @@ void Catalogue::Afficher(){
 	}
 }
 
-void Catalogue::Ajouter( TrajetSimple* t){
+void Catalogue::Ajouter( TrajetSimple* t)
+// Algorithme :
+// Ajoute le TrajetSimple à la collection si la collection n'est pas totalement remplie, réallloue de la mémoire sinon
+{
 	if (nb_trajets < taille){
 		collection[nb_trajets]=t;
-		//collection[nb_trajets]= new TrajetSimple(t.GetDepart(),t.GetArrivee(),t.GetTransport());
 		nb_trajets++;
     }
     else {
@@ -59,20 +59,19 @@ void Catalogue::Ajouter( TrajetSimple* t){
 	  Trajet ** tmp = new Trajet*[taille];
 	  for (int i =0; i<nb_trajets;i++){
 		  tmp[i]= collection[i];
-		  //tmp[i] =new TrajetSimple(list[i]->GetDepart(), list[i]->GetArrivee(), list[i]->GetTransport());
-		  //delete list[i];
 	  }
 	tmp[nb_trajets] =t;
-	//tmp[nb_trajets] = new TrajetSimple(t.GetDepart(), t.GetArrivee(), t.GetTransport());
+
 	nb_trajets++;
 	delete [] collection;
-	collection = tmp;
-	//delete tmp; le pointeur tmp est supprime par defaut a la fin de ajouter ?
-	
+	collection = tmp;	
   }
 }
 
-void Catalogue::Ajouter(TrajetCompose *tc){
+void Catalogue::Ajouter(TrajetCompose *tc)
+// Algorithme :
+//Ajoute le TrajetCompose à la collection si la collection n'est pas totalement remplie, réallloue de la mémoire sinon
+{
 
 	if (nb_trajets <taille){
 		collection[nb_trajets] = tc;
@@ -89,10 +88,12 @@ void Catalogue::Ajouter(TrajetCompose *tc){
 		delete [] collection;
 		collection = tmp;
 	}
-	//sdelete tc;
 }
 
-void Catalogue::Recherche(const char * depart, const char * arrivee){
+void Catalogue::Recherche(const char * depart, const char * arrivee)
+// Algorithme :
+//
+{
 	cout<<"Recherche en cours...pour aller de "<<depart<<" a "<<arrivee<<endl;
 	bool trouve=false;
 	for (int i=0;i<nb_trajets;i++){
@@ -147,10 +148,6 @@ Catalogue::~Catalogue ( )
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 	//cout <<"this pointer points to " <<this <<endl;
-	/*for (int i =0; i<nb_trajets;i++){
-		collection[i]->~Trajet();
-		delete collection[i];
-	}*/
 	delete [] collection;
 } //----- Fin de ~Catalogue
 

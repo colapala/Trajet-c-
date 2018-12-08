@@ -33,39 +33,63 @@ public:
     //
     // Contrat :
     //
+
   virtual void Afficher();
+    // Mode d'emploi :
+    //  Affiche les villes de départ, d'arrivée et le moyen de transport
+    // Contrat :
+    // aucun
+
   const char* GetDepart() const;
+    // Mode d'emploi :
+    //  Renvoie la ville de départ
+    // Contrat :
+    // aucun
+
   const char* GetArrivee() const ;
+    // Mode d'emploi :
+    //  Renvoie la ville d'Arrivée
+    // Contrat : 
+    // aucun
+
   const char* GetTransport() const;
+    // Mode d'emploi :
+    //  Renvoie le moyen de transport
+    // Contrat : 
+    // aucun
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    //  Fait une Copie des paramètres de unTrajetSimple dans les paramètres du TrajetSimple appelé
+    // Contrat : 
+    // aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    //  Construit un trajetSimple à partir d'un trajetSimple
+    // Contrat : 
+    // aucun
 
     TrajetSimple(const char* depart,const char * arrivee,const char * t );
     // Mode d'emploi :
-    //
+    //  Construit un trajetSimple à partir d'une ville de départ, d'une ville d'arrivée et d'un moyen de transport
     // Contrat :
-    //
+    // aucun
     
-	TrajetSimple ();
+    TrajetSimple ();
+    // Mode d'emploi :
+    //  Constructeur par Défaut
+    // Contrat :
+    // aucun
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :
-    //
+    //  Destructeur de TrajetSimple
     // Contrat :
-    //
+    // aucun
+
 
 //------------------------------------------------------------------ PRIVE
 
@@ -74,9 +98,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     char* transport;
-	char* Depart;
-	char* Arrivee;
-	//bool compose = false;
+    char* Depart;
+    char* Arrivee;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>

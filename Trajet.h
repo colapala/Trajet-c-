@@ -29,41 +29,57 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+
+	virtual void Afficher();
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    // aucun
+
+	virtual const char* GetDepart() const =0;
     // Mode d'emploi :
     //
     // Contrat :
-    //
-	//bool compose =false;
-	virtual void Afficher();
-	virtual const char* GetDepart() const =0;
+    // aucun
+
 	virtual const char* GetArrivee() const =0;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    // aucun
+
 	virtual const char* GetTransport() const=0;
-	//virtual void Ajouter(const TrajetSimple &t);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    // aucun
+
 //------------------------------------------------- Surcharge d'opérateurs
     Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
-    //
+    // aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
-    //
+    // aucun
 
+    
+    Trajet();
     // Mode d'emploi :
     //
     // Contrat :
-    //
-    Trajet();
+    // aucun
+
     virtual ~Trajet ( );
     // Mode d'emploi :
-    //
+    //  Destructeur de Trajets
     // Contrat :
-    //
+    // aucun
 
 //------------------------------------------------------------------ PRIVE
 
@@ -72,8 +88,6 @@ public:
 
 //----------------------------------------------------- Attributs protégés
 
-        /*char * Depart;
-        char *Arrivee;  */ 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>
