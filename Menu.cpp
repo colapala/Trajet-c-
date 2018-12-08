@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Catalogue.h"
 #include "Menu.h"
+#include <cstring>
 using namespace std;
 //!! Ce programme peut faire des erreurs dûes à l'allocation de TS** de taille MAX_LENGTH, elles ne sont pas importantes, elles veulent juste dire que tout l'espace n'est pas utilisé
 int main(){
@@ -53,19 +54,30 @@ int main(){
 				
 				cout<<"vous avez choisi l'ajout de Trajetcompose"<<endl;
 
-						cout<<"veuillez renseigner le nombre de trajets a ajouter"<<endl;
+				cout<<"veuillez renseigner le nombre de trajets a ajouter"<<endl;
 				cin>>nbElements;
-				
+				bool ErrRemplissage;
 				for (int i=0;i<nbElements;i++)	{
-					cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du "<<i+1<<"e trajet"<<endl;
-					cin>>villeA>>villeB>>transport;
+					ErrRemplissage = true;
+					while (ErrRemplissage){
+						cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du "<<i+1<<"e trajet"<<endl;
+						cin>>villeA>>villeB>>transport;
+						if (i==0 || !strcmp(villeA,TS[indexSimple-1]->GetArrivee())){
+							ErrRemplissage=false;
+						}
+						else {
+							cout << "Il faut que la ville de départ corresponde à la ville d'arrivée du sous trajet-précédent. Veuillez à nouveau ressaisir un trajet valide."<<endl;
+							cout <<"la ville d'arrivée du sous trajet précédent est : " <<TS[indexSimple-1]->GetArrivee() <<endl;
+						}
+					}
 					TS[indexSimple]=new TrajetSimple(villeA,villeB,transport);
 					if(i==1){
 						TC[indexComp]=new TrajetCompose(*TS[indexSimple-1],*TS[indexSimple],nbElements);
 					}else if(i>1){
-					TC[indexComp]->Ajouter(*TS[indexSimple]);
+						TC[indexComp]->Ajouter(*TS[indexSimple]);
 					}
 					indexSimple++;
+					cout << endl;
 				}
 				C.Ajouter(TC[indexComp]);
 				indexComp++;
