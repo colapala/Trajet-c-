@@ -77,8 +77,7 @@ public:
   
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetCompose & operator = ( const TrajetCompose & unTrajetCompose );
-    // Mode d'emploi : Opérateur par défaut.
-    // 
+    // Mode d'emploi : RAS
     // Contrat :
     // aucun
 

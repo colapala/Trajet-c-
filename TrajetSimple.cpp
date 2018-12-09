@@ -62,6 +62,8 @@ TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
 // Algorithme : Effectue une copie en profondeur en allouant un nouvel espace mémoire avant de copier.
 //
 {
+	
+	this->~TrajetSimple();
     Depart = new char[strlen(unTrajetSimple.Depart)+1];
     strcpy(Depart,unTrajetSimple.Depart);
     Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
@@ -75,14 +77,20 @@ TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
 //-------------------------------------------- Constructeurs - destructeur
 
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
+// Algorithme : RAS
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
     
 #endif
-	*this=unTrajetSimple;
+	Depart = new char[strlen(unTrajetSimple.Depart)+1];
+    strcpy(Depart,unTrajetSimple.Depart);
+    Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
+    strcpy(Arrivee,unTrajetSimple.Arrivee);
+    Transport = new char[strlen(unTrajetSimple.Transport)+1];
+    strcpy(Transport,unTrajetSimple.Transport);
+    
 	
 } //----- Fin de TrajetSimple (constructeur de copie)
 

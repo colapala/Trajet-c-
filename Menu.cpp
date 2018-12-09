@@ -17,6 +17,7 @@ int main(){
 	char* transport=new char[MAX_LENGTH];
 	Catalogue C;
 	
+	
 	//Stocke tous les trajets simples ajoutés avec un index
 	TrajetSimple** TS=new TrajetSimple*[MAX_LENGTH];
 	int indexSimple=0;

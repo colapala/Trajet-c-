@@ -47,7 +47,7 @@ void Catalogue::Afficher()
 
 void Catalogue::Ajouter( TrajetSimple* t)
 // Algorithme :
-// 2 cas : Si la collection n'est pas totalement remplie, on ajoute le TrajetSimple à la collection,
+// 2 cas : Si la collection n'est pas totalement nb_trajetse, on ajoute le TrajetSimple à la collection,
 // sinon on crée une nouvelle collection avec 2 fois plus de mémoire que précédemment,
 // on copie en profondeur puis on supprime l'ancienne
 // Copie en surface du nouveau trajet à ajouter
@@ -119,6 +119,7 @@ Catalogue::Catalogue ( const Catalogue & unCatalogue )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Catalogue>" << endl;
 #endif
+	
 } //----- Fin de Catalogue (constructeur de copie)
 
 

@@ -106,12 +106,20 @@ void TrajetCompose::Ajouter(const TrajetSimple &t)
 
 //------------------------------------------------- Surcharge d'opérateurs
 TrajetCompose & TrajetCompose::operator = ( const TrajetCompose & unTrajetCompose )
-// Algorithme : Opérateur par défaut.
+// Algorithme : RAS
 //
 {
 #ifdef MAP
     cout << "Appel de l'operateur = du <TrajetCompose>" << endl;
 #endif
+
+	this->~TrajetCompose();
+	nb_SousTraj=unTrajetCompose.nb_SousTraj;
+	rempli = unTrajetCompose.rempli;
+	list = new Trajet*[nb_SousTraj];
+	for (int i =0; i<rempli;i++){
+		list[i] = new TrajetSimple(unTrajetCompose.list[i]->GetDepart(), unTrajetCompose.list[i]->GetArrivee(), unTrajetCompose.list[i]->GetTransport());
+	}
 	return *this;
 } //----- Fin de operator =
 
@@ -132,6 +140,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 	for (int i =0; i<rempli;i++){
 		list[i] = new TrajetSimple(unTrajetCompose.list[i]->GetDepart(), unTrajetCompose.list[i]->GetArrivee(), unTrajetCompose.list[i]->GetTransport());
 	}
+	
 } //----- Fin de TrajetCompose (constructeur de copie)
 
 
