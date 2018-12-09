@@ -1,9 +1,9 @@
 /*************************************************************************
                            Catalogue  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 19/11/2018
+    copyright            : (C) 2018 par Corentin LAHAROTTE, Louis UNG, Jan-Markus GELFGREN
+    e-mail               : colapala@gmail.com, ung.louis@hotmail.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Catalogue> (fichier Trajet.h) ----------------
@@ -21,8 +21,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-//
-//
+// Classe amie de classe TrajetCompose.
+// Cette classe permet de recenser tous les trajets (simple et composé) qui ont été créés.
+// Elle permet de les afficher, et également d'en ajouter.
 //------------------------------------------------------------------------
 
 class Catalogue
@@ -35,6 +36,7 @@ public:
 	void Afficher();
     // Mode d'emploi :
     // Affiche le catalogue
+	// Chaque trajet est affiché en détail un par un.
     // Contrat :
     // aucun
 
@@ -46,29 +48,25 @@ public:
     
 	void Ajouter(TrajetCompose *tc);
     // Mode d'emploi :
-    // Ajoute un TrajetCompose au catalogue
+	// Surcharge de la méthode Ajouter
+    // Ajoute un TrajetCompose au lieu d'un TrajetSimple au catalogue
     // Contrat :
     // aucun
     
 	void Recherche(const char* depart,const char* arrivee);
     // Mode d'emploi :
     // Recherche un Trajet ayant les villes de départ et d'arrivée correspondantes aux villes placées en paramètres
+	// Affiche le premier Trajet qui répond aux critères (recherche simple).
     // Contrat :
     // aucun
     
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Catalogue & operator = ( const Catalogue & unCatalogue );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    // aucun
 
 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( const Catalogue & unCatalogue );
     // Mode d'emploi (constructeur de copie) :
     // Construit un catalogue à partir d'un autre catalogue
+	// Constructeur de copie par défaut.
     // Contrat :
     // aucun
 
@@ -91,8 +89,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 	Trajet ** collection;
-	static int taille;
-	static int nb_trajets;
+	int taille;
+	int nb_trajets;
 	
 };
 

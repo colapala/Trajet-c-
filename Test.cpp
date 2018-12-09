@@ -5,7 +5,9 @@
 #include "Catalogue.h"
 using namespace std;
 
+//programme utilisé pour les tests internes et le débuggage
 int main(){
+	
   TrajetSimple* t = new TrajetSimple("Lyon","Marseille","bateau");
   
   TrajetSimple t1("Marseille","Paris","train");
@@ -17,10 +19,7 @@ int main(){
   TrajetSimple t3 ("Annecy", "Londres", "Bus");
   TC.Ajouter(t3);
   TrajetSimple t4(t3);
-  //t4=t3;
-  //t4.Afficher();
-  //TC.Afficher();
-  //TrajetCompose TC2(
+
   
   Catalogue C;
   C.Ajouter(t);

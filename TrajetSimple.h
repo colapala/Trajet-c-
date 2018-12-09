@@ -1,9 +1,9 @@
 /*************************************************************************
                            TrajetSimple  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 19/11/2018
+    copyright            : (C) 2018 par Corentin LAHAROTTE, Louis UNG, Jan-Markus GELFGREN
+    e-mail               : colapala@gmail.com, ung.louis@hotmail.fr
 *************************************************************************/
 
 //---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
@@ -18,8 +18,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
-//
-//
+//Classe qui hérite de la classe Trajet.
+//Cette classe permet de créer un trajet simple 
+//entre 2 villes en précisant le moyen de transport utilisé.
 //------------------------------------------------------------------------
 
 class TrajetSimple : public Trajet
@@ -54,39 +55,40 @@ public:
 
   const char* GetTransport() const;
     // Mode d'emploi :
-    //  Renvoie le moyen de transport
+    //  Renvoie le moyen de Transport
     // Contrat : 
     // aucun
 
 //------------------------------------------------- Surcharge d'opérateurs
     TrajetSimple & operator = ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi :
-    //  Fait une Copie des paramètres de unTrajetSimple dans les paramètres du TrajetSimple appelé
+    //  Fait une copie des paramètres de unTrajetSimple dans les paramètres du TrajetSimple appelé
     // Contrat : 
     // aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi (constructeur de copie) :
-    //  Construit un trajetSimple à partir d'un trajetSimple
+    //  Construit un trajetSimple à partir d'un trajetSimple (en surface)
     // Contrat : 
     // aucun
 
     TrajetSimple(const char* depart,const char * arrivee,const char * t );
     // Mode d'emploi :
-    //  Construit un trajetSimple à partir d'une ville de départ, d'une ville d'arrivée et d'un moyen de transport
+    //  Construit un trajetSimple à partir d'une ville de départ, d'une ville d'arrivée et d'un moyen de Transport
     // Contrat :
     // aucun
     
     TrajetSimple ();
     // Mode d'emploi :
-    //  Constructeur par Défaut
+    //  Constructeur par défaut.
+	// Sert uniquement pour le traçage des appels de constructeurs.
     // Contrat :
     // aucun
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :
-    //  Destructeur de TrajetSimple
+    // Destructeur de TrajetSimple
     // Contrat :
     // aucun
 
@@ -97,7 +99,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char* transport;
+    char* Transport;
     char* Depart;
     char* Arrivee;
 };

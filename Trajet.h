@@ -1,9 +1,9 @@
 /*************************************************************************
                            Trajet  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-ma ) il               : $EMAIL$
+    début                : 19/11/2018
+    copyright            : (C) 2018 par Corentin LAHAROTTE, Louis UNG, Jan-Markus GELFGREN
+    e-mail               : colapala@gmail.com, ung.louis@hotmail.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
@@ -19,8 +19,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
-//
+//Classe abstraite qui sert d'ancêtre commun aux classes TrajetSimple et TrajetCompose
+//Ainsi, on pourra créer des tableaux contenant des instances de ces deux classes.
+//La classe en elle-même ne dispose d'aucune fonctionnalité.
 //------------------------------------------------------------------------
 
 class Trajet 
@@ -31,7 +32,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 	virtual void Afficher();
-    // Mode d'emploi :
+    // Mode d'emploi : 
     //  
     // Contrat :
     // aucun

@@ -19,8 +19,10 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Menu>
-//
-//
+// Cette classe joue le rôle d'intermédiaire entre le programme et l'utilisateur
+// Elle propose 3 fonctionnalités :
+// L'affichage du catalogue, l'ajout d'un trajet ou la recherche d'un trajet
+// Cette classe correspond à notre "main", c'est elle qui fait appel à toutes les autres classes.
 //------------------------------------------------------------------------
 
 class Menu 
@@ -35,30 +37,13 @@ public:
     // Contrat :
     //
 	
-//------------------------------------------------- Surcharge d'opérateurs
-    Menu & operator = ( const Menu & unMenu );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 //-------------------------------------------- Constructeurs - destructeur
     Menu ( const Menu & unMenu );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
     Menu();
     virtual ~Menu ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 //------------------------------------------------------------------ PRIVE
 

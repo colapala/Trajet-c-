@@ -1,9 +1,9 @@
 /*************************************************************************
                            Trajet  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 19/11/2018
+    copyright            : (C) 2018 par Corentin LAHAROTTE, Louis UNG, Jan-Markus GELFGREN
+    e-mail               : colapala@gmail.com, ung.louis@hotmail.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
@@ -26,27 +26,27 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
  
  void Trajet::Afficher()
-// Algorithme :
+// Algorithme : RAS
 //
 {
 }
 
 const char* Trajet::GetDepart() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
  return "no";
 }
 
 const char* Trajet::GetArrivee() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
 return "no";
 }
 
 const char* Trajet::GetTransport() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
 return "no";
@@ -54,7 +54,7 @@ return "no";
 
 //------------------------------------------------- Surcharge d'opérateurs
 Trajet & Trajet::operator = ( const Trajet & unTrajet )
-// Algorithme :
+// Algorithme : RAS
 //
 {
   return *this;
@@ -63,7 +63,7 @@ Trajet & Trajet::operator = ( const Trajet & unTrajet )
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
-// Algorithme :
+// Algorithme : RAS
 //
 {
 #ifdef MAP
@@ -73,7 +73,7 @@ Trajet::Trajet ( const Trajet & unTrajet )
 
 
 Trajet::Trajet ()
-// Algorithme :
+// Algorithme : RAS
 //
 {
 #ifdef MAP
@@ -83,7 +83,7 @@ Trajet::Trajet ()
 
 
 Trajet::~Trajet ( )
-// Algorithme :
+// Algorithme : RAS
 //
 {
 #ifdef MAP

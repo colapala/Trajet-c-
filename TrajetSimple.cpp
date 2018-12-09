@@ -1,9 +1,9 @@
 /*************************************************************************
                            TrajetSimple  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 19/11/2018
+    copyright            : (C) 2018 par Corentin LAHAROTTE, Louis UNG, Jan-Markus GELFGREN
+    e-mail               : colapala@gmail.com, ung.louis@hotmail.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
@@ -28,46 +28,46 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void TrajetSimple::Afficher()
-// Algorithme :
+// Algorithme : RAS
 //
 {
   cout << Depart << endl;
   cout << Arrivee <<endl;
-  cout<<transport<<endl <<endl;
+  cout<<Transport<<endl <<endl;
 }
 
 const char* TrajetSimple::GetDepart() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
 	return Depart;
 }
 
 const char* TrajetSimple::GetArrivee() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
 	return Arrivee;
 }
 
 const char* TrajetSimple::GetTransport() const
-// Algorithme :
+// Algorithme : RAS
 //
 {
-	return transport;
+	return Transport;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
 TrajetSimple & TrajetSimple::operator = ( const TrajetSimple & unTrajetSimple )
-// Algorithme : 
+// Algorithme : Effectue une copie en profondeur en allouant un nouvel espace mémoire avant de copier.
 //
 {
     Depart = new char[strlen(unTrajetSimple.Depart)+1];
     strcpy(Depart,unTrajetSimple.Depart);
     Arrivee = new char[strlen(unTrajetSimple.Arrivee)+1];
     strcpy(Arrivee,unTrajetSimple.Arrivee);
-    transport = new char[strlen(unTrajetSimple.transport)+1];
-    strcpy(transport,unTrajetSimple.transport);
+    Transport = new char[strlen(unTrajetSimple.Transport)+1];
+    strcpy(Transport,unTrajetSimple.Transport);
     return *this;
 } //----- Fin de operator =
 
@@ -95,7 +95,7 @@ TrajetSimple::TrajetSimple (){
 
 TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char * t )
 										
-// Algorithme :
+// Algorithme : On effectue une copie en profondeur dans le constructeur.
 //
 {
 #ifdef MAP
@@ -105,13 +105,13 @@ TrajetSimple::TrajetSimple ( const char* depart, const char * arrivee,const char
     strcpy(Depart,depart);
     Arrivee = new char[strlen(arrivee)+1];
     strcpy(Arrivee,arrivee);
-    transport = new char[strlen(t)+1];
-    strcpy(transport,t);
+    Transport = new char[strlen(t)+1];
+    strcpy(Transport,t);
 } //----- Fin de TrajetSimple
 
 
 TrajetSimple::~TrajetSimple ( )
-// Algorithme :
+// Algorithme : RAS
 //
 {
 #ifdef MAP
@@ -120,7 +120,7 @@ TrajetSimple::~TrajetSimple ( )
 	//cout <<"this pointer points to " <<this <<endl;
     delete [] Depart;
     delete [] Arrivee;
-    delete [] transport;
+    delete [] Transport;
 } //----- Fin de ~TrajetSimple
 
 

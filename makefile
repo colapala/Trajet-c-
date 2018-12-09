@@ -1,10 +1,10 @@
 .PHONY: clean
 
-Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o Catalogue.o
-
 Menu.ex: Trajet.o TrajetSimple.o TrajetCompose.o Menu.o Catalogue.o
 
-main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o
+Test.ex: Trajet.o TrajetSimple.o TrajetCompose.o Test.o Catalogue.o
+
+main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o Catalogue .o
 	g++ -c Test.cpp Trajet.cpp TrajetSimple.cpp TrajetCompose.cpp
 	g++ -g Test.o Trajet.o TrajetSimple.o TrajetCompose.o -o main
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind_output.txt ./main
@@ -24,7 +24,7 @@ Catalogue.o: Catalogue.cpp Catalogue.h
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --max-stackframe=10485760 ./$@
 
 %.o: %.cpp 
-	g++ -ansi -pedantic -Wall -std=c++11 -c $< -o $@ 
+	g++ -DMAP -ansi -pedantic -Wall -std=c++11 -c $< -o $@ 
 
 clean : 
-	rm -rf Test.ex *.o core
+	rm -rf Test.ex Menu.ex *.o core

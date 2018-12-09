@@ -6,24 +6,31 @@
 #include "Menu.h"
 #include <cstring>
 using namespace std;
-//!! Ce programme peut faire des erreurs dûes à l'allocation de TS** de taille MAX_LENGTH, elles ne sont pas importantes, elles veulent juste dire que tout l'espace n'est pas utilisé
+//!! Ce programme peut faire des erreurs dûes à l'allocation de TS** de taille MAX_LENGTH.
+// Cependant elles ne nuisent pas à l'exécution du programme, elles veulent juste dire que tout l'espace n'est pas utilisé
 int main(){
-	const int MAX_LENGTH=10;
+	const int MAX_LENGTH=50;
 	int choix;
 	int nbElements;
 	char* villeA=new char[MAX_LENGTH];
 	char* villeB=new char[MAX_LENGTH];
 	char* transport=new char[MAX_LENGTH];
 	Catalogue C;
+	
+	//Stocke tous les trajets simples ajoutés avec un index
 	TrajetSimple** TS=new TrajetSimple*[MAX_LENGTH];
-	TrajetCompose** TC=new TrajetCompose*[MAX_LENGTH];		
 	int indexSimple=0;
+	
+	//stocke tous les trajets composés ajoutés
+	TrajetCompose** TC=new TrajetCompose*[MAX_LENGTH];		
 	int indexComp=0;
+	
+	//variable pour quitter ou rester dans le menu
 	bool arret=false; 
 
 
 	while(!arret){
-		//C.Afficher();
+		
 		cout<<"Bonjour, et bienvenue dans notre catalogue de trajets"<<endl;
 		cout<<"Tapez 1 pour ajouter un TrajetSimple"<<endl;
 		cout<<"Tapez 2 pour ajouter un TrajetCompose"<<endl;
@@ -35,7 +42,7 @@ int main(){
 		cin>>choix;
 		endl(cout);
 		switch(choix){
-
+			//Ajout d'un trajet simple
 			case 1: 
 				
 				cout<<"vous avez choisi l'ajout de TrajetSimple"<<endl;
@@ -47,7 +54,7 @@ int main(){
 				indexSimple++;
 				break;
 				
-			
+			//Ajout d'un trajet composé
 			case 2:
 				
 				cout<<"vous avez choisi l'ajout de Trajetcompose"<<endl;
@@ -59,6 +66,8 @@ int main(){
 				bool ErrRemplissage;
 				for (int i=0;i<nbElements;i++)	{
 					ErrRemplissage = true;
+					
+					//boucle infinie tant que l'utilisateur ne renseigne pas les infos correctement
 					while (ErrRemplissage){
 						cout<<"veuillez renseigner la ville de depart, la ville d'arrivee et le moyen de transport du "<<i+1<<"e trajet"<<endl;
 						cin>>villeA>>villeB>>transport;
@@ -85,7 +94,7 @@ int main(){
 				indexComp++;
 				break;
 				
-
+			//recherche d'un trajet
 			case 3:
 				cout<<"vous avez choisi la recherche de trajets"<<endl;	
 				cout<<"veuillez renseigner la ville de depart, la ville d'arrivee "<<endl;
@@ -94,12 +103,14 @@ int main(){
 				C.Recherche(villeA,villeB);
 				break;
 
+			//affichage du catalogue
 			case 4:
 				cout<<"vous avez choisi l'affichage des trajets: "<<endl;
 				endl(cout);
 				C.Afficher();
 				break;
-
+			
+			//fin du menu
 			case 5:
 				cout<<"Au revoir"<<endl;
 				arret=true;
@@ -108,6 +119,7 @@ int main(){
 		endl(cout);
 	}
 
+	//on libère toute la mémoire allouée
 	for (int i =0; i<MAX_LENGTH;i++){
 		delete TS[i];
 	}
